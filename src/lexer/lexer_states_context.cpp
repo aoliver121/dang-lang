@@ -10,15 +10,15 @@ dang::lexer_states_context::lexer_states_context()
 , init(this)
 , starts_with_char(this)
 , whitespace(this) {
-    std::cout << __PRETTY_FUNCTION__ << "\n";
+    std::cout << __PRETTY_FUNCTION__ << "\tthis=[" << this << "]\n";
 }
 
-void dang::lexer_states_context::handle_char(const char *ch) {
-    std::cout << __PRETTY_FUNCTION__ << "ch=[" << (void *) ch << "]('" << *ch << "')\n";
-    current_state->handle_char(ch);
+void dang::lexer_states_context::handle_char(const char *char_ptr) {
+    std::cout << __PRETTY_FUNCTION__ << "\tchar_ptr=[" << (void *) char_ptr << "]('" << *char_ptr << "')\n";
+    current_state->handle_char(char_ptr);
 }
 
 void dang::lexer_states_context::change_state(lexer_state *new_state) {
-    std::cout << __PRETTY_FUNCTION__ << " new_state=[" << new_state << "])\n";
+    std::cout << __PRETTY_FUNCTION__ << "\tnew_state=[" << new_state << "])\n";
     current_state = new_state;
 }

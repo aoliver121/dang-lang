@@ -8,7 +8,7 @@
 dang::lexer::lexer(const char *text)
 : text(text)
 , context() {
-    std::cout << __PRETTY_FUNCTION__ << " text=[" << (void *) text << "](\"" << text << "\")\n";
+    std::cout << __PRETTY_FUNCTION__ << "\tthis=[" << this << "], text=[" << (void *) text << "](\"" << text << "\")\n";
 }
 
 void dang::lexer::lex() {

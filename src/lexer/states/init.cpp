@@ -8,20 +8,24 @@
 
 dang::lexer_states::init::init(lexer_states_context *context)
 : lexer_state(context) {
-    std::cout << __PRETTY_FUNCTION__ << " context=[" << context << "]\n";
+    std::cout << "\t" << __PRETTY_FUNCTION__ << "\tthis=[" << this << "], context=[" << context << "]\n";
 }
 
-void dang::lexer_states::init::handle_char(char const *ch) {
-    std::cout << __PRETTY_FUNCTION__ << " ch=[" << (void *) ch << "]('" << *ch << "')\n";
-    char const &c = *ch;
+bool dang::lexer_states::init::handle_letter(const char *letter_ptr) {
+    std::cout << "\t" << __PRETTY_FUNCTION__ << "\tletter_ptr=[" << (void *) letter_ptr << "]('" << *letter_ptr << "')\n";
 
-    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_') {
-        auto &starts_with_char = context->starts_with_char;
-        context->change_state(&starts_with_char);
-        starts_with_char.set(ch);
-        return;
-    }
+    auto &starts_with_char = context->starts_with_char;
+    context->change_state(&starts_with_char);
+    starts_with_char.set(letter_ptr);
 
-    std::cerr << "ERROR " << __PRETTY_FUNCTION__ << " No handler for char '" << *ch << "'\n";
-    std::exit(1);
+    return true;
 }
+
+bool dang::lexer_states::init::handle_whitespace(const char *whitespace_ptr) {
+    std::cout << "\t" << __PRETTY_FUNCTION__ << "\twhitespace_ptr=[" << (void *) whitespace_ptr << "]('" << *whitespace_ptr << "')\n";
+
+    // nop
+
+    return true;
+}
+

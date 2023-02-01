@@ -11,9 +11,11 @@ namespace dang {
     class lexer_state {
     public:
         explicit lexer_state(lexer_states_context *context);
-        virtual void handle_char(char const *ch) = 0;
-//    protected:
+        void handle_char(char const *char_ptr);
+    protected:
         lexer_states_context *context;
+        virtual bool handle_letter(char const *letter_ptr);
+        virtual bool handle_whitespace(const char *whitespace_ptr);
     };
 }
 

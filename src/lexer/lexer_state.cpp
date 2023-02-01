@@ -7,13 +7,40 @@
 
 dang::lexer_state::lexer_state(lexer_states_context *context)
 : context(context) {
-    std::cout << __PRETTY_FUNCTION__ << " context=[" << context << "]\n";
+    std::cout << __PRETTY_FUNCTION__ << "\tthis=[" << this << "], context=[" << context << "]\n";
 }
 
-void dang::lexer_state::handle_char(const char *ch) {
-    std::cout << __PRETTY_FUNCTION__ << " ch=[" << (void *) ch << "]('" << *ch << "')\n";
-    // TODO
+void dang::lexer_state::handle_char(const char *char_ptr) {
+    char const c = *char_ptr; // AIOLI - I assume copying to the stack is faster than using a reference.
 
-    std::cerr << "ERROR " << __PRETTY_FUNCTION__ << " No handler for char '" << *ch << "'\n";
+    std::cout << __PRETTY_FUNCTION__ << "\tchar_ptr=[" << (void *) char_ptr << "]('" << c << "')\n";
+
+    bool handled;
+
+    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_') {
+        handled = handle_letter(char_ptr);
+        if (handled) {
+            return;
+        }
+    }
+
+    switch (c) {
+        // TODO add more whitespace chars
+        case ' ':
+            handled = handle_whitespace(char_ptr);
+            if (handled) {
+                return;
+            }
+    }
+
+    std::cerr << "ERROR " << __PRETTY_FUNCTION__ << "\tNo handler for char '" << *char_ptr << "'\n";
     std::exit(1);
+}
+
+bool dang::lexer_state::handle_letter(const char *letter_ptr) {
+    return false;
+}
+
+bool dang::lexer_state::handle_whitespace(const char *whitespace_ptr) {
+    return false;
 }

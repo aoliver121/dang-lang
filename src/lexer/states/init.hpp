@@ -12,7 +12,9 @@ namespace dang::lexer_states {
     class init: public lexer_state {
     public:
         explicit init(lexer_states_context *context);
-        void handle_char(char const *ch) override;
+    private:
+        bool handle_letter(char const *letter_ptr) override;
+        bool handle_whitespace(char const *whitespace_ptr) override;
     };
 }
 
