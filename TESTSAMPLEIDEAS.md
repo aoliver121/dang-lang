@@ -39,7 +39,7 @@ temp_built_in_print
 ```
 main := () {\n    temp_built_in_print("Hello, World!");\n};
 ^   ^^^^^^^^^     ^                  ^^^            ^^^^ ^^
-init - startsWithChar - wsSeq - : - = - wsSeq - ( - ) - wsSeq 
-- { - wsSeq - startsWithChar - ( - " - unfilteredStr - " - ) 
+init - starts_with_char - wsSeq - : - = - wsSeq - ( - ) - wsSeq 
+- { - wsSeq - starts_with_char - ( - " - unfilteredStr - " - ) 
 - ; - wsSeq - } - ; - EOF
 ```
