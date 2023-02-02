@@ -31,6 +31,14 @@ void dang::lexer_state::handle_char(const char *char_ptr) {
             if (handled) {
                 return;
             }
+            break;
+        case ':':
+            handled = handle_colon();
+            if (handled) {
+                return;
+            }
+            break;
+
     }
 
     std::cerr << "ERROR " << __PRETTY_FUNCTION__ << "\tNo handler for char '" << *char_ptr << "'\n";
@@ -42,5 +50,9 @@ bool dang::lexer_state::handle_letter(const char *letter_ptr) {
 }
 
 bool dang::lexer_state::handle_whitespace(const char *whitespace_ptr) {
+    return false;
+}
+
+bool dang::lexer_state::handle_colon() {
     return false;
 }

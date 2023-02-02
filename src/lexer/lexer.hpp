@@ -8,6 +8,7 @@
 #include "lexer_states_context.hpp"
 
 namespace dang {
+    // Lexes, sexes, and otherwise, perplexes
     class lexer {
     public:
         explicit lexer(char const *text);

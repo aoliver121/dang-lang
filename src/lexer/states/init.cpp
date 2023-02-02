@@ -14,9 +14,9 @@ dang::lexer_states::init::init(lexer_states_context *context)
 bool dang::lexer_states::init::handle_letter(const char *letter_ptr) {
     std::cout << "\t" << __PRETTY_FUNCTION__ << "\tletter_ptr=[" << (void *) letter_ptr << "]('" << *letter_ptr << "')\n";
 
-    auto &starts_with_char = context->starts_with_char;
-    context->change_state(&starts_with_char);
-    starts_with_char.set(letter_ptr);
+    auto &starts_with_letter = context->starts_with_letter;
+    context->change_state(&starts_with_letter);
+    starts_with_letter.set(letter_ptr);
 
     return true;
 }
@@ -24,8 +24,18 @@ bool dang::lexer_states::init::handle_letter(const char *letter_ptr) {
 bool dang::lexer_states::init::handle_whitespace(const char *whitespace_ptr) {
     std::cout << "\t" << __PRETTY_FUNCTION__ << "\twhitespace_ptr=[" << (void *) whitespace_ptr << "]('" << *whitespace_ptr << "')\n";
 
-    // nop
+    // maintain state
 
     return true;
 }
+
+bool dang::lexer_states::init::handle_colon() {
+    std::cout << "\t" << __PRETTY_FUNCTION__ << "\n";
+
+    auto &colon = context->colon;
+    context->change_state(&colon);
+
+    return true;
+}
+
 

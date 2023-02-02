@@ -12,6 +12,9 @@ namespace dang::lexer_states {
     class whitespace: public lexer_state {
     public:
         explicit whitespace(lexer_states_context *context);
+        bool handle_letter(const char *letter_ptr) override;
+        bool handle_whitespace(const char *whitespace_ptr) override;
+        bool handle_colon() override;
     };
 }
 

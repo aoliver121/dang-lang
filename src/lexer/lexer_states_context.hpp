@@ -7,8 +7,9 @@
 
 #include "lexer_state.hpp"
 #include "states/init.hpp"
-#include "states/starts_with_char.hpp"
+#include "states/starts_with_letter.hpp"
 #include "states/whitespace.hpp"
+#include "states/colon.hpp"
 
 namespace dang {
     class lexer_states_context {
@@ -18,8 +19,9 @@ namespace dang {
         void change_state(lexer_state *new_state);
 
         lexer_states::init init;
-        lexer_states::starts_with_char starts_with_char;
+        lexer_states::starts_with_letter starts_with_letter;
         lexer_states::whitespace whitespace;
+        lexer_states::colon colon;
     private:
         lexer_state *current_state;
     };

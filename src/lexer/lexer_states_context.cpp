@@ -8,8 +8,9 @@
 dang::lexer_states_context::lexer_states_context()
 : current_state(&init)
 , init(this)
-, starts_with_char(this)
-, whitespace(this) {
+, starts_with_letter(this)
+, whitespace(this)
+, colon(this) {
     std::cout << __PRETTY_FUNCTION__ << "\tthis=[" << this << "]\n";
 }
 
