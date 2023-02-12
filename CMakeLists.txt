@@ -3,4 +3,7 @@ project(Dang)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(Dang src/main.cpp)
+include_directories(src)
+
+add_subdirectory(src)
+add_subdirectory(test)
